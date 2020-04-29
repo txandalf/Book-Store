@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Easy Books{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <div class="row">
+    <!-- Apartado de generos -->
+    <div class="col-md-2">
+      <h4 class="text-center"> Generos</h4>
+      <div class="list-group">
+        {% for gen in generos %}
+          {% if gen.nombre == genero.nombre %}
+            <a class="list-group-item list-group-item-action active bg-dark" style="border-color: #333333;" href="{{url_for('inicio', id=gen.id)}}">{{gen.nombre}}</a>
+          {% else %}
+            <a class="list-group-item list-group-item-action" href="{{url_for('inicio', id=gen.id)}}">{{gen.nombre}}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </br>
+    <a class="btn btn-secondary" href="{{url_for('generos_new')}}" role="button">Nuevo Género</a>
+    </div>
+    <!-- Apartado de libros (articulos) -->
+    <div class="col-md-10">
+      <h3>{{genero.nombre}}</h3>
+      <ul class="list-group list-group-flush">
+        {% for art in articulos %}
+        <li class="list-group-item">
+          <div class="media">
+            {% if art.image %}
+            <img src="{{url_for('static', filename='upload/')}}{{art.image}}" class="align-self-center mr-3" alt="...">
+            {% else %}
+            <img src="{{url_for('static', filename='upload/not-found.png')}}" class="align-self-center mr-3" alt="...">
+            {% endif %}
+            <div class="media-body">
+              <h5 class="mt-0">{{art.nombre}}</h5>
+              <p>{{art.sinopsis}}</p>
+              <a class="btn btn-secondary" href="#">Editar</a>
+              <a class="btn btn-secondary" href="#">Eliminar</a>
+            </div>
+          </div>
+      </li>
+      {% endfor %}
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

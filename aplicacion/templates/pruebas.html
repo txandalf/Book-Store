@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Easy Books{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="../static/css/style.css">{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <div class="row">
+    <!-- Apartado de generos -->
+    <div class="col-md-2">
+      <h4 class="text-center"> Generos</h4>
+      <div class="list-group">
+        {% for gen in generos %}
+          {% if gen.nombre == genero.nombre %}
+            <a class="list-group-item list-group-item-action active bg-dark" style="border-color: #333333;" href="{{url_for('inicio', id=gen.id)}}">{{gen.nombre}}</a>
+          {% else %}
+            <a class="list-group-item list-group-item-action" href="{{url_for('inicio', id=gen.id)}}">{{gen.nombre}}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </br>
+    <a class="btn btn-secondary" href="#" role="button">Nuevo Género</a>
+    </div>
+    <!-- Apartado de libros (articulos) -->
+    <div class="col-md-10">
+      <h3>{{genero.nombre}}</h3>
+        <div class="container">
+          {% set index = 0 %}
+          {% for i in range(1, cont//3) %}
+            <div class="row">
+              {% for j in range(0, 2) %}
+              <div class="col">
+                <div class="card middle">
+                  <div class="front">
+                    {% if articulos[index].image %}
+                    <img src="{{url_for('static', filename='upload/')}}{{articulos[index].image}}" alt="...">
+                    {% else %}
+                    <img src="{{url_for('static', filename='upload/not-found.png')}}" alt="...">
+                    {% endif %}
+                  </div>
+                  <div class="back">
+                      <div class="back-content middle">
+                        <h5>Sinopsis</h5>
+                        <div class="scroll">{{articulos[index].sinopsis}}</div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+            </div>
+              {% endfor %}
+              {% set index = index+1 %}
+            </div>
+          {% endfor %}
+
+
+
+
+          {% for art in articulos %}
+          <div class="row">
+
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

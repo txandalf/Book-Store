@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="../static/img/books.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- Googlefonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    {% block css %}
+    {% endblock %}
+    <!--FONTAWESOME-->
+    <script src="https://kit.fontawesome.com/b004216000.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <style>
+        body{
+          font-family: 'Cairo', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-1">
+          <img src="../static/img/books.png" class="pl-3"/>
+        </div>
+        <div class="col-4 pt-1">
+          <a class="text-muted" href="{{url_for('inicio')}}"><h2> Easy Books</h2></a>
+        </div>
+        <div class="col-4 text-center">
+        </div>
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <a class="text-muted" href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+          </a>
+          <a class="btn btn-sm btn-outline-secondary" href="#">Registrarse</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="container">
+    <nav class="navbar navbar-expand-md">
+      <div class="navbar-collapse collapse justify-content-center">
+          <ul class="navbar-nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
+                onmouseout="navBarBlockHide(this)" href="{{url_for('inicio')}}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
+                onmouseout="navBarBlockHide(this)" href="{{url_for('generos')}}">Géneros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
+                onmouseout="navBarBlockHide(this)" href="/articulos/new">Nuevo Libro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
+                onmouseout="navBarBlockHide(this)" href="/f">Información</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
+                onmouseout="navBarBlockHide(this)" href="/f">Contacto</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Contenido -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  {% block foot %}
+      <footer class="blog-footer bg-dark text-center p-2 text-white">
+        </br>
+        <p>Mini aplicación web desarrollada en<a href="https://www.python.org/" target="_blank" class="text-muted"> Python</a> con
+          <a href="https://palletsprojects.com/p/flask/" target="_blank" class="text-muted">Flask</a> como microframework.
+        </p>
+        <p>Desarrollado por Aritz R</p>
+        <p>
+          <a href="#" class="text-muted">Volver al inicio</a>
+        </p>
+      </footer>
+    {% endblock %}
+
+  <!-- Boostrap js core -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+          crossorigin="anonymous"></script>
+
+  <script src="../static/scripts/index.js"></script>
+
+</body>
+</html>

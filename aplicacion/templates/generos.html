@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Géneros{% endblock %}
+{% block content %}
+
+  <style>
+    .list-group-item:hover{
+      background-color: #333333;
+      color: #f1f1f1f1;
+    }
+  </style>
+
+  <div class="container py-5">
+    <div class="list-group">
+      <button type="button" style="color: #f1f1f1f1;" class="bg-dark list-group-item list-group-item-action">
+        Géneros
+      </button>
+      {% for gen in generos %}
+        <a role="button" href="{{url_for('inicio', id=gen.id)}}"
+        class="list-group-item list-group-item-action btn btn-dark">{{gen.nombre}}</a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
