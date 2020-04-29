@@ -1,7 +1,7 @@
 # Book Store con Python y Flask
 
-<img src="inicio.png">
 
+![image](https://github.com/txandalf/Book-Store/edit/master/inicio.png)
 
 
 
