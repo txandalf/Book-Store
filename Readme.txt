@@ -1,6 +1,6 @@
 # Book Store con Python y Flask
 
-![Image](https://github.com/txandalf/coronavirusinfo/edit/master/inicio.png)
+![Image](https://github.com/txandalf/Book-Store/edit/master/inicio.png)
 
 
 
