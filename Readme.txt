@@ -1,3 +1,14 @@
+# Book Store con Python y Flask
+
+
+![image](https://github.com/txandalf/Book-Store/edit/master/inicio.png)
+
+
+
+
+
+
+##################################################
 #### SMALL BOOK STORE ####
 
 # La idea es crear una aplicación web con Python
