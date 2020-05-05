@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="../static/img/books.png">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <!-- Animated css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- Googlefonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
@@ -13,8 +16,7 @@
     <!-- CSS -->
     {% block css %}
     {% endblock %}
-    <!--FONTAWESOME-->
-    <script src="https://kit.fontawesome.com/b004216000.js" crossorigin="anonymous"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -42,7 +44,14 @@
           <a class="text-muted" href="#" aria-label="Search">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
           </a>
-          <a class="btn btn-sm btn-outline-secondary" href="#">Registrarse</a>
+          {% if current_user.is_authenticated %}
+            <a class="navbar-brand" href="/carrito">Carrito <span class="badge">{{num_articulos}}</span></a>
+            <a class="navbar-brand" href="/perfil/{{current_user.username}}">Perfil</a>
+            <a class="navbar-brand" href="/logout">{{current_user.username}} (Salir)</a>
+          {% else %}
+            <a class="btn btn-sm btn-outline-secondary" href="/login">Iniciar Sesión</a>
+            <a class="btn btn-sm btn-outline-secondary" href="/registro">Registrarse</a>
+          {% endif %}
         </div>
       </div>
     </header>
@@ -61,10 +70,12 @@
                 <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
                 onmouseout="navBarBlockHide(this)" href="{{url_for('generos')}}">Géneros</a>
             </li>
+            {% if current_user.is_authenticated and current_user.is_admin() %}
             <li class="nav-item">
                 <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
                 onmouseout="navBarBlockHide(this)" href="/articulos/new">Nuevo Libro</a>
             </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link p-4 text-muted" onmouseover="navBarBlockDisplay(this)"
                 onmouseout="navBarBlockHide(this)" href="/f">Información</a>

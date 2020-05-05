@@ -17,7 +17,9 @@
         {% endfor %}
       </div>
     </br>
+    {% if current_user.is_authenticated and current_user.is_admin() %}
     <a class="btn btn-secondary" href="{{url_for('generos_new')}}" role="button">Nuevo Género</a>
+    {% endif %}
     </div>
     <!-- Apartado de libros (articulos) -->
     <div class="col-md-10">
@@ -32,10 +34,20 @@
             <img src="{{url_for('static', filename='upload/not-found.png')}}" class="align-self-center mr-3" alt="...">
             {% endif %}
             <div class="media-body">
-              <h5 class="mt-0">{{art.nombre}}</h5>
+              <h5 class="mt-0"><b>{{art.nombre}}</b></h5>
               <p>{{art.sinopsis}}</p>
-              <a class="btn btn-secondary" href="#">Editar</a>
-              <a class="btn btn-secondary" href="#">Eliminar</a>
+              <ul class="list-group list-group-horizontal">
+                {% if current_user.is_authenticated and current_user.is_admin() %}
+                <li class="list-group-item"><a class="btn btn-secondary"
+                  href="{{url_for('articulos_edit', id=art.id)}}">Editar</a></li>
+                <li class="list-group-item"><a class="btn btn-secondary"
+                  href="{{url_for('articulos_delete', id=art.id)}}">Eliminar</a></li>
+                {% endif %}
+                <li class="list-group-item"><a class="btn btn-secondary"
+                  href="{{url_for('carrito_add', id=art.id)}}">Comprar</a></li>
+                <li class="list-group-item"><p class="py-1"><b>Precio: {{art.precio_final()}}€</b></p></li>
+                <li class="list-group-item"><p class="py-1"><b>Stock: {{art.stock}}</b></p></li>
+              </ul>
             </div>
           </div>
       </li>

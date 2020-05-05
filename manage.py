@@ -3,6 +3,7 @@ from aplicacion.app import app, db
 from aplicacion.models import *
 import codecs
 import os
+from getpass import getpass
 
 
 manager = Manager(app)
@@ -40,7 +41,7 @@ def add_data_tables():
     libros = [
         {"nombre":"El nombre del viento", "precio":10, "sinopsis":sinopsis_list[0], "stock":20, "GeneroId":1, "image":"nowind.jpg"},
         {"nombre":"El temor de un hombre sabio", "precio":10, "sinopsis":sinopsis_list[1], "stock":20, "GeneroId":1, "image":"etduhsabio.jpg"},
-        {"nombre":"20 Poemas", "precio":7.95, "sinopsis":sinopsis_list[2], "stock":2, "GeneroId":2, "image":"20pbukowski.jpg"},
+        {"nombre":"20 Poemas", "precio":7.95, "sinopsis":sinopsis_list[2], "stock":2, "GeneroId":2, "image":"20poemas.jpg"},
         {"nombre":"Dune", "precio":15, "sinopsis":sinopsis_list[3], "stock":6, "GeneroId":3, "image":"dune.jpg"},
         {"nombre":"La ciencia del sexo", "precio":15, "sinopsis":sinopsis_list[4], "stock":3, "GeneroId":4, "image":"lcdsexo.jpg"},
         {"nombre":"La otra historia de los templarios", "precio":22, "sinopsis":sinopsis_list[5], "stock":1, "GeneroId":5, "image":"lohdltemplarios.jpg"},
@@ -63,6 +64,20 @@ def get_book_sinopsis():
         sinopsis.append(text)
 
     return sinopsis
+
+@manager.command
+def create_admin():
+    usuario = {
+        "username":input("Usuario:"),
+        "password":getpass("Contraseña:"),
+        "nombre":input("Nombre:"),
+        "email":input("Email:"),
+        "admin":True
+        }
+    nuevoUsuario = Usuarios(**usuario)
+    db.session.add(nuevoUsuario)
+    db.session.commit()
+
 
 if __name__ == "__main__":
     manager.run()

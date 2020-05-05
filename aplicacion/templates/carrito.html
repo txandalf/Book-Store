@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Tienda de Videojuegos{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    <h3><b>Carrito</b></h3>
+  </br>
+    {% if total>0 %}
+    <div class="list-group">
+      <table class="table table-bordered">
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+            <th>Eliminar</th>
+          </tr>
+      {% for art in articulos %}
+        <tr>
+          <!-- art.0 es el elemento con posicion 0 de la tupla, el articulo en este caso
+          y art.1 seria el elemento 2 de la tupla, la cantidad -->
+          <td>{{art.0.nombre}}</td>
+          <td>{{art.1}}</td>
+          <td>{{art.0.precio_final()}}</td>
+          <td>{{art.0.precio_final()*art.1}}</td>
+          <td><a href="{{url_for('carrito_delete',id=art.0.id)}}"><span class="glyphicon glyphicon-trash"></span> Borrar</a></td>
+        </tr>
+      {% endfor %}
+      </table>
+      <h3><b>Total:</b> {{total}}</h3>
+    </div>
+    {% else %}
+      <h2>No hay artículos en el carrito</h2>
+    {% endif %}
+  </div>
+  </div>
+</div>
+
+
+{% endblock %}
